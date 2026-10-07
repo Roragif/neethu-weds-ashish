@@ -1,4 +1,3 @@
-/* Smooth Scroll for entire page */
 html {
     scroll-behavior: smooth;
 }
@@ -46,32 +45,15 @@ body {
     color: #a8813a;
 }
 
-/* Music Button */
-#music-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-    background: #a8813a;
-    color: #fff;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 30px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
 /* Hero Section */
 .hero {
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('hero-bg.jpg') center/cover no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('hero-bg.jpeg') center/cover no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #ffffff;
     padding: 20px;
-    position: relative;
 }
 
 .bible-quote {
@@ -101,36 +83,7 @@ body {
     font-weight: 600;
 }
 
-/* Down Arrow Button Animation */
-.scroll-down-btn {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 50px;
-    border: 2px solid #ffffff;
-    border-radius: 25px;
-}
-
-.scroll-down-btn span {
-    position: absolute;
-    top: 8px;
-    left: 50%;
-    width: 6px;
-    height: 6px;
-    margin-left: -3px;
-    background-color: #ffffff;
-    border-radius: 50%;
-    animation: scrollAnimation 2s infinite;
-}
-
-@keyframes scrollAnimation {
-    0% { opacity: 1; transform: translateY(0); }
-    100% { opacity: 0; transform: translateY(20px); }
-}
-
-/* GLARE / SHINE EFFECT (Light Light Pass Effect) */
+/* GLARE / SHINE EFFECT */
 .glare-card {
     position: relative;
     overflow: hidden;
@@ -278,6 +231,11 @@ footer {
     background: #f4eee2;
     color: #666;
     font-size: 0.9rem;
+}
+
+.sharing {
+    font-weight: 600;
+    margin-bottom: 5px;
 }
 
 @media (max-width: 768px) {
