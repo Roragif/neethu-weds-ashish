@@ -1,0 +1,162 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #4a4a4a;
+    background-color: #fdfbf7;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    padding: 20px;
+}
+
+.bible-quote {
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+    color: #f1e4c3;
+}
+
+.sub-title {
+    font-size: 1.1rem;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+    font-weight: 300;
+}
+
+.groom-bride {
+    font-family: 'Great Vibes', cursive;
+    font-size: 5rem;
+    margin-bottom: 15px;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.wedding-date {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.section {
+    padding: 70px 20px;
+}
+
+.section h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.2rem;
+    color: #a8813a;
+    margin-bottom: 35px;
+}
+
+.couple-container, .events-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.person, .event-card {
+    background: #ffffff;
+    padding: 35px 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    flex: 1;
+    min-width: 290px;
+    border: 1px solid #f2e8d5;
+}
+
+.person h3, .event-card h3 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 12px;
+}
+
+.event-date {
+    font-weight: 600;
+    color: #a8813a;
+    margin-bottom: 10px;
+}
+
+.heart {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.5rem;
+    color: #a8813a;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 10px 22px;
+    background-color: #a8813a;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #8a682c;
+}
+
+#timer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+#timer div {
+    background: #ffffff;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    min-width: 85px;
+    border: 1px solid #f2e8d5;
+}
+
+#timer span {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #a8813a;
+}
+
+footer {
+    padding: 25px;
+    background: #f4eee2;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.sharing {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #4a4a4a;
+}
+
+@media (max-width: 768px) {
+    .groom-bride {
+        font-size: 3.8rem;
+    }
+    .section h2 {
+        font-size: 2.6rem;
+    }
+}
