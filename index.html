@@ -102,48 +102,58 @@
 
     <!-- Footer -->
     <footer>
-        <p class="sharing">Sharing Happiness: Nimmi Lawrance</p>
+        
         <p>#NeethuWedsAshish | October 2026</p>
     </footer>
 
     <!-- JavaScript Scripts -->
-    <script>
-        // Music Logic
-        const music = document.getElementById("bg-music");
-        const musicBtn = document.getElementById("music-btn");
+<script>
+    const music = document.getElementById("bg-music");
+    const musicBtn = document.getElementById("music-btn");
 
-        function toggleMusic() {
-            if (music.paused) {
-                music.play();
+    // User page-il aadhymayi touch/click cheyyumbol music play aakum
+    document.addEventListener('click', function() {
+        if (music.paused) {
+            music.play().then(() => {
                 musicBtn.innerText = "⏸️ Pause Music";
-            } else {
-                music.pause();
-                musicBtn.innerText = "🎵 Play Music";
-            }
+            }).catch(error => {
+                console.log("Autoplay prevented");
+            });
+        }
+    }, { once: true });
+
+    function toggleMusic() {
+        if (music.paused) {
+            music.play();
+            musicBtn.innerText = "⏸️ Pause Music";
+        } else {
+            music.pause();
+            musicBtn.innerText = "🎵 Play Music";
+        }
+    }
+
+    // Countdown Timer Logic
+    const weddingDate = new Date("October 17, 2026 11:00:00").getTime();
+    const countdown = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+
+        if (distance < 0) {
+            clearInterval(countdown);
+            document.getElementById("timer").innerHTML = "<h3>The Celebration Has Begun!</h3>";
+            return;
         }
 
-        // Countdown Timer
-        const weddingDate = new Date("October 17, 2026 11:00:00").getTime();
-        const countdown = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            if (distance < 0) {
-                clearInterval(countdown);
-                document.getElementById("timer").innerHTML = "<h3>The Celebration Has Begun!</h3>";
-                return;
-            }
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
-        }, 1000);
-    </script>
+        document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+        document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+        document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+        document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+    }, 1000);
+</script>
 </body>
 </html>
