@@ -9,13 +9,23 @@
 </head>
 <body>
 
+    <!-- Cover / Welcome Overlay Screen -->
+    <div id="welcome-overlay" class="welcome-overlay">
+        <div class="welcome-card glare-card">
+            <h3 class="welcome-sub">You are cordially invited to</h3>
+            <h1 class="welcome-title">Neethu & Ashish</h1>
+            <p class="welcome-wedding">Wedding Celebration</p>
+            <button id="open-btn" class="open-btn" onclick="openInvitation()">✨ View Invitation ✨</button>
+        </div>
+    </div>
+
     <!-- Background Music Audio Player -->
     <audio id="bg-music" loop preload="auto">
         <source src="song.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Floating Play/Pause Music Button -->
-    <button id="music-btn" onclick="toggleMusic()">🎵 Play Music</button>
+    <!-- Floating Music Controls (Mini) -->
+    <button id="music-btn" class="music-toggle-btn" onclick="toggleMusic()">⏸️ Pause Music</button>
 
     <!-- Navigation Bar -->
     <nav class="navbar">
@@ -40,13 +50,13 @@
         <h2 class="section-title">The Couple</h2>
         <div class="couple-container">
             <div class="person glare-card">
-                <img src="bride.jpg" alt="Neethu" class="profile-img">
+                <img src="bride.jpeg" alt="Neethu" class="profile-img">
                 <h3>Neethu</h3>
                 <p>Daughter of Mr. Lawrance K T & Mrs. Gerly Lawrance<br>Kodaliparambil House, Edathirinji, Thrissur</p>
             </div>
             <div class="heart">&amp;</div>
             <div class="person glare-card">
-                <img src="groom.jpg" alt="Ashish" class="profile-img">
+                <img src="groom.jpeg" alt="Ashish" class="profile-img">
                 <h3>Ashish</h3>
                 <p>Son of Mr. Vinu N. D. & Mrs. Mary Vinu<br>Nayankara Kozhikadan House, Padiyoor, Thrissur</p>
             </div>
@@ -99,6 +109,7 @@
 
     <!-- Footer -->
     <footer>
+        <p class="sharing">Sharing Happiness: Nimmi Lawrance</p>
         <p>#NeethuWedsAshish | October 2026</p>
     </footer>
 
@@ -106,28 +117,32 @@
     <script>
         const music = document.getElementById("bg-music");
         const musicBtn = document.getElementById("music-btn");
+        const overlay = document.getElementById("welcome-overlay");
+
+        function openInvitation() {
+            // Play Audio on Direct User Click
+            music.play().then(() => {
+                musicBtn.style.display = "block";
+            }).catch(err => {
+                console.log("Audio play error:", err);
+            });
+
+            // Smooth Fade Out of Overlay Screen
+            overlay.classList.add("fade-out");
+            setTimeout(() => {
+                overlay.style.display = "none";
+            }, 800);
+        }
 
         function toggleMusic() {
             if (music.paused) {
-                music.play().then(() => {
-                    musicBtn.innerText = "⏸️ Pause Music";
-                }).catch(err => {
-                    alert("Audio load ചെയ്യാൻ സാധിക്കുന്നില്ല. ഫയൽ നാമം 'song.mp3' ആണോ എന്ന് പരിശോധിക്കുക.");
-                });
+                music.play();
+                musicBtn.innerText = "⏸️ Pause Music";
             } else {
                 music.pause();
                 musicBtn.innerText = "🎵 Play Music";
             }
         }
-
-        // Screen-ൽ ആദ്യത്തെ Touch/Click നടക്കുമ്പോൾ Automatic Play ചെയ്യാൻ ശ്രമിക്കും
-        document.addEventListener('click', function() {
-            if (music.paused) {
-                music.play().then(() => {
-                    musicBtn.innerText = "⏸️ Pause Music";
-                }).catch(() => {});
-            }
-        }, { once: true });
 
         // Countdown Timer
         const weddingDate = new Date("October 17, 2026 11:00:00").getTime();
