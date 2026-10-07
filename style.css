@@ -171,26 +171,63 @@ body {
     color: #a8813a;
 }
 
-/* Gallery Grid */
+/* Animated Photo Gallery Grid */
+.gallery-section {
+    perspective: 1000px;
+}
+
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
+    gap: 25px;
     max-width: 1000px;
     margin: 0 auto;
+    padding: 10px;
+}
+
+.gallery-card {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    cursor: pointer;
+    background: #ffffff;
 }
 
 .gallery-card img {
     width: 100%;
-    height: 260px;
+    height: 280px;
     object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
+    display: block;
+    border-radius: 15px;
+    transition: transform 0.6s ease, filter 0.4s ease;
 }
 
-.gallery-card img:hover {
-    transform: scale(1.03);
+/* Hover Animations - ഫോട്ടോയ്ക്ക് മുകളിൽ വിരൽ തൊടുമ്പോൾ/Hover ചെയ്യുമ്പോൾ */
+.gallery-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(168, 129, 58, 0.25);
+}
+
+.gallery-card:hover img {
+    transform: scale(1.12);
+    filter: brightness(1.05);
+}
+
+/* Smooth Fade-in Entrance Effect */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.gallery-card {
+    animation: fadeInUp 0.8s ease-out forwards;
 }
 
 .btn {
