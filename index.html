@@ -10,53 +10,12 @@
 <body>
 
     <!-- Background Music Audio Player -->
-   <audio id="bg-music" loop preload="auto">
-    <source src="song.mp3" type="audio/mpeg">
-</audio>
+    <audio id="bg-music" loop preload="auto">
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
 
-<script>
-    const music = document.getElementById("bg-music");
-    let isPlaying = false;
-
-    function playAudio() {
-        if (!isPlaying && music) {
-            music.play().then(() => {
-                isPlaying = true;
-                console.log("Audio playing successfully");
-            }).catch(error => {
-                console.log("Autoplay waiting for interaction:", error);
-            });
-        }
-    }
-
-    // Screen-ൽ എവിടെ touch/click/scroll ചെയ്താലും പാട്ട് പ്ലേ ആകും
-    window.addEventListener('click', playAudio);
-    window.addEventListener('touchstart', playAudio);
-    window.addEventListener('scroll', playAudio);
-
-    // Countdown Timer
-    const weddingDate = new Date("October 17, 2026 11:00:00").getTime();
-    const countdown = setInterval(function() {
-        const now = new Date().getTime();
-        const distance = weddingDate - now;
-
-        if (distance < 0) {
-            clearInterval(countdown);
-            document.getElementById("timer").innerHTML = "<h3>The Celebration Has Begun!</h3>";
-            return;
-        }
-
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-        document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-        document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-        document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
-    }, 1000);
-</script>
+    <!-- Floating Play/Pause Music Button -->
+    <button id="music-btn" onclick="toggleMusic()">🎵 Play Music</button>
 
     <!-- Navigation Bar -->
     <nav class="navbar">
@@ -81,13 +40,13 @@
         <h2 class="section-title">The Couple</h2>
         <div class="couple-container">
             <div class="person glare-card">
-                <img src="bride.jpg" alt="Neethu" class="profile-img">
+                <img src="bride.jpeg" alt="Neethu" class="profile-img">
                 <h3>Neethu</h3>
                 <p>Daughter of Mr. Lawrance K T & Mrs. Gerly Lawrance<br>Kodaliparambil House, Edathirinji, Thrissur</p>
             </div>
             <div class="heart">&amp;</div>
             <div class="person glare-card">
-                <img src="groom.jpg" alt="Ashish" class="profile-img">
+                <img src="groom.jpeg" alt="Ashish" class="profile-img">
                 <h3>Ashish</h3>
                 <p>Son of Mr. Vinu N. D. & Mrs. Mary Vinu<br>Nayankara Kozhikadan House, Padiyoor, Thrissur</p>
             </div>
@@ -140,17 +99,34 @@
 
     <!-- Footer -->
     <footer>
-      <p>#NeethuWedsAshish | October 2026</p>
+        <p class="sharing">Sharing Happiness: Nimmi Lawrance</p>
+        <p>#NeethuWedsAshish | October 2026</p>
     </footer>
 
     <!-- JavaScript Scripts -->
     <script>
         const music = document.getElementById("bg-music");
+        const musicBtn = document.getElementById("music-btn");
 
-        // User screen-il aadhymayi touch/click cheyyumbol music automatic play aakum
+        function toggleMusic() {
+            if (music.paused) {
+                music.play().then(() => {
+                    musicBtn.innerText = "⏸️ Pause Music";
+                }).catch(err => {
+                    alert("Audio load ചെയ്യാൻ സാധിക്കുന്നില്ല. ഫയൽ നാമം 'song.mp3' ആണോ എന്ന് പരിശോധിക്കുക.");
+                });
+            } else {
+                music.pause();
+                musicBtn.innerText = "🎵 Play Music";
+            }
+        }
+
+        // Screen-ൽ ആദ്യത്തെ Touch/Click നടക്കുമ്പോൾ Automatic Play ചെയ്യാൻ ശ്രമിക്കും
         document.addEventListener('click', function() {
             if (music.paused) {
-                music.play().catch(error => console.log("Autoplay blocked"));
+                music.play().then(() => {
+                    musicBtn.innerText = "⏸️ Pause Music";
+                }).catch(() => {});
             }
         }, { once: true });
 
